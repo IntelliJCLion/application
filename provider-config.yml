@@ -1,0 +1,53 @@
+spring:
+  profilrs:
+    active: dev
+---
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource  #数据源
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: admin
+  profiles: dev
+  application:
+    name: springCloud   #项目名
+server:
+  port: 8001
+mybatis:
+  type-aliases-package: com.tang.pojo
+  config-location: classpath:mybatis/mybatis-config.xml #mybatis核心配置文件
+  mapper-locations: classpath:mybatis/mapper/*.xml  #mybatismapper路径
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7002/eureka/,http://localhost:7001/eureka/
+  instance:
+    instance-id: spring-cloud-dept-8001
+info:
+  app.name: tang-spring-cloud
+---
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource  #数据源
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: admin
+  profiles: test
+  application:
+    name: springCloud   #项目名
+server:
+  port: 8002
+mybatis:
+  type-aliases-package: com.tang.pojo
+  config-location: classpath:mybatis/mybatis-config.xml #mybatis核心配置文件
+  mapper-locations: classpath:mybatis/mapper/*.xml  #mybatismapper路径
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7002/eureka/,http://localhost:7001/eureka/
+  instance:
+    instance-id: spring-cloud-dept-8001
+info:
+  app.name: tang-spring-cloud
